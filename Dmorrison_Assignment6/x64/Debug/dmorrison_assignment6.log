@@ -1,0 +1,3 @@
+﻿  dmorrison_assignment6.cpp
+C:\Darmor\School\Data Structures & Algorithms\dmorrison_assignment6\dmorrison_assignment6.cpp(45,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  dmorrison_assignment6.vcxproj -> C:\Darmor\School\Data Structures & Algorithms\dmorrison_assignment6\x64\Debug\dmorrison_assignment6.exe

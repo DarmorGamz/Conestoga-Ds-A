@@ -1,0 +1,5 @@
+C:\Darmor\School\Data Structures & Algorithms\TreeTraversalStudentRecord\obj\Debug\net6.0\TreeTraversalStudentRecord.csproj.AssemblyReference.cache
+C:\Darmor\School\Data Structures & Algorithms\TreeTraversalStudentRecord\obj\Debug\net6.0\TreeTraversalStudentRecord.GeneratedMSBuildEditorConfig.editorconfig
+C:\Darmor\School\Data Structures & Algorithms\TreeTraversalStudentRecord\obj\Debug\net6.0\TreeTraversalStudentRecord.AssemblyInfoInputs.cache
+C:\Darmor\School\Data Structures & Algorithms\TreeTraversalStudentRecord\obj\Debug\net6.0\TreeTraversalStudentRecord.AssemblyInfo.cs
+C:\Darmor\School\Data Structures & Algorithms\TreeTraversalStudentRecord\obj\Debug\net6.0\TreeTraversalStudentRecord.csproj.CoreCompileInputs.cache
