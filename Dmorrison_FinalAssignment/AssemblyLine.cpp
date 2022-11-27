@@ -6,6 +6,7 @@ SN:		8258832
 
 /** INCLUDES ******************************************************************/
 #include "AssemblyLine.h"
+#include <iostream>
 
 /** TYPEDEFS, STRUCTURES AND ENUMERATIONS *************************************/
 AssemblyLine* Head = nullptr;
@@ -69,4 +70,8 @@ Product* AssemblyLine::MoveProduct() {
 */
 void AssemblyLine::AddProduct(Product* pProduct) {
 	this->pTask->AddProduct(pProduct);
+}
+
+AssemblyLine* AssemblyLine::GetpNext() {
+	return this->pNext;
 }
