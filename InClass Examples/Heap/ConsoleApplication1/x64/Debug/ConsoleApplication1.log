@@ -1,0 +1,13 @@
+﻿  ConsoleApplication1.cpp
+  MaxHeap.cpp
+  Generating Code...
+MaxHeap.obj : error LNK2005: "public: __cdecl MinHeap::MinHeap(int)" (??0MinHeap@@QEAA@H@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: void __cdecl MinHeap::MinHeapify(int)" (?MinHeapify@MinHeap@@QEAAXH@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: void __cdecl MinHeap::decreaseKey(int,int)" (?decreaseKey@MinHeap@@QEAAXHH@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: void __cdecl MinHeap::deleteKey(int)" (?deleteKey@MinHeap@@QEAAXH@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: int __cdecl MinHeap::extractMin(void)" (?extractMin@MinHeap@@QEAAHXZ) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: int __cdecl MinHeap::get_level(int)" (?get_level@MinHeap@@QEAAHH@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: void __cdecl MinHeap::insertKey(int)" (?insertKey@MinHeap@@QEAAXH@Z) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "public: void __cdecl MinHeap::print(void)" (?print@MinHeap@@QEAAXXZ) already defined in ConsoleApplication1.obj
+MaxHeap.obj : error LNK2005: "void __cdecl swap(int *,int *)" (?swap@@YAXPEAH0@Z) already defined in ConsoleApplication1.obj
+C:\Darmor\School\Data Structures & Algorithms\InClass Examples\Heap\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe : fatal error LNK1169: one or more multiply defined symbols found

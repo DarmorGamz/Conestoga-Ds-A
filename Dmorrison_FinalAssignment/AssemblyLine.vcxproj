@@ -136,6 +136,9 @@
     <ClInclude Include="Product.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Users\Darren\Downloads\Project (1)\Project\InputProducts.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

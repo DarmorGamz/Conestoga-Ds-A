@@ -23,6 +23,7 @@ class AssemblyLine {
 		void Run();
 		Product* MoveProduct();
 		void AddProduct(Product*);
+		AssemblyLine* GetpNext();
 };
 
 extern AssemblyLine* Head;

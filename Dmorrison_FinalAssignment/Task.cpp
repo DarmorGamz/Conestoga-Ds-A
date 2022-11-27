@@ -6,10 +6,16 @@ SN:		8258832
 
 /** INCLUDES ******************************************************************/
 #include "Task.h"
+#include <iostream>
 
 /** PUBLIC FUNCTION IMPLEMENTATIONS *******************************************/
 Task::Task(std::string name) { // TODO Does there need to be an inital quantity to the inventory.
 	this->Name = name;
+
+	// Each task gets 1 item to start. Should add a Random number?
+	Item* temp = new Item();
+	temp->Name = name;
+	this->Inventory.push(temp);
 }
 
 /**
@@ -21,17 +27,24 @@ void Task::Run() {
 		// Gets next ready item in queue.
 		Product* tempProduct = this->ProdQ.front();
 		int index = -1;
-		for(int i = 0; i < (sizeof(tempProduct->Components)/sizeof(Item)); i++) { // TODO break this loop if item is found to be faster.
+		for(int i = 0; i < 8; i++) { // TODO break this loop if item is found to be faster.
 			if(tempProduct->Components[i].Name == this->Name) {
-				index = i;
+				index = i; // Index of this tasks part. Can be -1.
 			}
 		}
-
 		if(index != -1) { // Product needs this Component
 			if(!this->Inventory.empty()) { // If this inventory isn't empty.
-				tempProduct->status = Status::Ready;
+				this->Inventory.pop(); // Takes a component out of the inventory and puts it on the product.
+				tempProduct->Components[index].SN = tempProduct->SN; // Update the part to match the product.
+				if(tempProduct->status != BackOrdered) { // Dont override a backorder status.
+					tempProduct->status = Status::Ready; // Udpate Status;
+				}
 			} else {
-				tempProduct->status = Status::BackOrdered;
+				tempProduct->status = Status::BackOrdered; // Udpate Status;
+			}
+		} else { // If this product doesnt require this task.
+			if(tempProduct->status != BackOrdered) { // Dont override a backorder status.
+				tempProduct->status = Status::Ready; // Udpate Status;
 			}
 		}
 	}
@@ -45,7 +58,7 @@ Product* Task::MoveProduct() {
 	if(!this->ProdQ.empty()) {
 		Product* tempProduct = this->ProdQ.front();
 		if(tempProduct->status == Status::Ready || tempProduct->status == Status::BackOrdered) {
-			this->ProdQ.pop();
+			this->ProdQ.pop(); // Remove product from this queue.
 			return tempProduct;
 		}
 		return nullptr; // Item is not Ready.

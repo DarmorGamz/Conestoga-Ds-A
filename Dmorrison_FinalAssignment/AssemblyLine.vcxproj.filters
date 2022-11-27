@@ -36,4 +36,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Users\Darren\Downloads\Project (1)\Project\InputProducts.txt" />
+  </ItemGroup>
 </Project>
