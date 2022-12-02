@@ -16,6 +16,14 @@ Task::Task(std::string name) { // TODO Does there need to be an inital quantity 
 	Item* temp = new Item();
 	temp->Name = name;
 	this->Inventory.push(temp);
+
+	Item* temp2 = new Item();
+	temp2->Name = name;
+	this->Inventory.push(temp2);
+
+	Item* temp3 = new Item();
+	temp3->Name = name;
+	this->Inventory.push(temp3);
 }
 
 /**
@@ -29,23 +37,19 @@ void Task::Run() {
 		int index = -1;
 		for(int i = 0; i < 8; i++) { // TODO break this loop if item is found to be faster.
 			if(tempProduct->Components[i].Name == this->Name) {
-				index = i; // Index of this tasks part. Can be -1.
+				if (!this->Inventory.empty()) { // If this inventory isn't empty.
+					this->Inventory.pop(); // Takes a component out of the inventory and puts it on the product.
+					tempProduct->Components[i].SN = tempProduct->SN; // Update the part to match the product.
+					if (tempProduct->status != BackOrdered) { // Dont override a backorder status.
+						tempProduct->status = Status::Ready; // Udpate Status;
+					}
+				} else {
+					tempProduct->status = Status::BackOrdered; // Udpate Status;
+				}
 			}
 		}
-		if(index != -1) { // Product needs this Component
-			if(!this->Inventory.empty()) { // If this inventory isn't empty.
-				this->Inventory.pop(); // Takes a component out of the inventory and puts it on the product.
-				tempProduct->Components[index].SN = tempProduct->SN; // Update the part to match the product.
-				if(tempProduct->status != BackOrdered) { // Dont override a backorder status.
-					tempProduct->status = Status::Ready; // Udpate Status;
-				}
-			} else {
-				tempProduct->status = Status::BackOrdered; // Udpate Status;
-			}
-		} else { // If this product doesnt require this task.
-			if(tempProduct->status != BackOrdered) { // Dont override a backorder status.
-				tempProduct->status = Status::Ready; // Udpate Status;
-			}
+		if(tempProduct->status != BackOrdered) { // Dont override a backorder status.
+			tempProduct->status = Status::Ready; // Udpate Status;
 		}
 	}
 }

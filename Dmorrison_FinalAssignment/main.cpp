@@ -94,15 +94,17 @@ int main() {
             prev->Run();
 
         }
+
+        // Move Ready Product in the Assembly line Front to back.
         AssemblyLine* curr = Head;
         while(curr != nullptr) {
-            Product *tempProduct = curr->MoveProduct();
-            if(tempProduct != nullptr && curr->GetpNext() != nullptr) {
+            Product *tempProduct = curr->MoveProduct(); // Move a Product
+            if(tempProduct != nullptr && curr->GetpNext() != nullptr) { // Move a product to the next task.
                 if(tempProduct->status != BackOrdered) {
                     tempProduct->status = Status::NotReady;
                 }
                 curr->GetpNext()->AddProduct(tempProduct);
-            } else if(tempProduct != nullptr && curr->GetpNext() == nullptr) {
+            } else if(tempProduct != nullptr && curr->GetpNext() == nullptr) { // Move the Product to one of the output arrays.
                 if(tempProduct->status == Status::Ready) {
                     CompletedProducts.push_back(tempProduct);
                 } else if (tempProduct->status == Status::BackOrdered) {
