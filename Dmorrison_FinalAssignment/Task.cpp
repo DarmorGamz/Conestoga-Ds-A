@@ -12,18 +12,13 @@ SN:		8258832
 Task::Task(std::string name) { // TODO Does there need to be an inital quantity to the inventory.
 	this->Name = name;
 
-	// Each task gets 1 item to start. Should add a Random number?
-	Item* temp = new Item();
-	temp->Name = name;
-	this->Inventory.push(temp);
-
-	Item* temp2 = new Item();
-	temp2->Name = name;
-	this->Inventory.push(temp2);
-
-	Item* temp3 = new Item();
-	temp3->Name = name;
-	this->Inventory.push(temp3);
+	int InventoryCount = rand() % 10 + 1;
+	for (int i = 0; i < InventoryCount; i++) {
+		// Each task gets 1 item to start. Should add a Random number?
+		Item* temp = new Item();
+		temp->Name = name;
+		this->Inventory.push(temp);
+	}
 }
 
 /**
@@ -34,7 +29,6 @@ void Task::Run() {
 	if(!this->ProdQ.empty()) {
 		// Gets next ready item in queue.
 		Product* tempProduct = this->ProdQ.front();
-		int index = -1;
 		for(int i = 0; i < 8; i++) { // TODO break this loop if item is found to be faster.
 			if(tempProduct->Components[i].Name == this->Name) {
 				if (!this->Inventory.empty()) { // If this inventory isn't empty.
