@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="AssemblyLine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProductRegistration.cpp" />
     <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyLine.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="ProductRegistration.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
   <ItemGroup>

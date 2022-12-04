@@ -9,6 +9,7 @@ SN:		8258832
 #include <fstream>
 #include <iostream>
 #include <regex>
+#include "ProductRegistration.h"
 
 /** PUBLIC FUNCTION IMPLEMENTATIONS *******************************************/
 
@@ -29,6 +30,7 @@ int main() {
     }
 
     // Define product arrays.
+    RegistrationTree* ProductTree = new RegistrationTree();
     std::vector<Product*> UnProccessedProducts;
     std::vector<Product*> CompletedProducts;
     std::vector<Product*> BackorderedProducts;
@@ -107,6 +109,7 @@ int main() {
             } else if(tempProduct != nullptr && curr->GetpNext() == nullptr) { // Move the Product to one of the output arrays.
                 if(tempProduct->status == Status::Ready) {
                     CompletedProducts.push_back(tempProduct);
+                    ProductTree->RegisterProduct(tempProduct->SN);
                 } else if (tempProduct->status == Status::BackOrdered) {
                     BackorderedProducts.push_back(tempProduct);
                 } else {
@@ -125,9 +128,9 @@ int main() {
     std::cout << "Completed List: " << std::endl;
     for(int i = 0; i < CompletedProducts.size(); i++) {
         std::cout << "   Serial Number: " << CompletedProducts[i]->SN << std::endl;
-        std::cout << "   Status: " << CompletedProducts[i]->status << std::endl;
+       // std::cout << "   Status: " << CompletedProducts[i]->status << std::endl;
         for(int k = 0; k < 8; k++) {
-            if(CompletedProducts[i]->Components[k].Name != "") {
+            if(CompletedProducts[i]->Components[k].Name != "" && CompletedProducts[i]->Components[k].Name != " ") {
                 std::cout << "      Component: " << CompletedProducts[i]->Components[k].Name << std::endl;
                 std::cout << "      Serial: " << CompletedProducts[i]->Components[k].SN << std::endl;
             }
@@ -147,6 +150,28 @@ int main() {
         }
     }
 
+    // Binary Tree to registor Products.
+    std::cout << std::endl << std::endl << "Product Registration Tree: " << std::endl;
+    ProductTree->print();
+    std::cout << std::endl;
+    std::cout << "Verify First Completed Product is in the Tree: ";
+    if (CompletedProducts.size() != 0) {
+        if (ProductTree->search(CompletedProducts[0]->SN) != nullptr) {
+            std::cout << "True";
+        } else {
+            std::cout << "False";
+        }
+    } else {
+        std::cout << "No Completed Products!";
+    }
+    std::cout << std::endl;
+    std::cout << "Verify duplicate S/N cannot be entered: ";
+    if (ProductTree->RegisterProduct(CompletedProducts[0]->SN) == false) {
+        std::cout << "True";
+    } else {
+        std::cout << "False";
+    }
+    std::cout << std::endl;
     // Return Success.
     return 1;
 }
